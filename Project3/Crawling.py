@@ -5,7 +5,7 @@ import requests
 from Cloud import MakeCloud
 
 url = 'http://apis.data.go.kr/9710000/BillInfoService2/getBillInfoList'
-params ={'ServiceKey' : 'Ws7z6yKz623hbrHshOvor+6YEclNv4A2kyaiwVd97XGoZpsn2TS41ZzgqzThFlqYnOaIYoPDsErGGbjc1/QIog==',
+params ={'ServiceKey' : '디코딩키',
          'numOfRows' : '50', 'pageNo' : '1',
          'ord' : 'A01', 'start_ord' : '18', 'end_ord' : '21', 'bill_name' : '기후'}
 
