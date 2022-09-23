@@ -11,6 +11,7 @@ from konlpy.tag import Okt
 
 class MakeCloud():
 
+        # 워드클라우드 생성 함수
         def wc(self, file):
                 engine = Okt()
                 all_nouns = engine.nouns(file)
@@ -23,12 +24,11 @@ class MakeCloud():
                 table.columns = ['단어', '빈도수']
                 table.index = table.index + 1
                 print(table.head(60))
-                # print(table[table['단어'] == '이산화탄소'])
 
                 image = Image.open('co2.png')
                 mask = np.array(image)
-                # image_color = ImageColorGenerator(mask)
 
+                # 색깔 설정 함수
                 def color_func(word, font_size, position,orientation,random_state=None, **kwargs): # color_func의 기본 파라미터들
                         return ("hsl({:d},{:d}%, {:d}%)".format(np.random.randint(120, 140), np.random.randint(80, 100),
                                                         np.random.randint(10, 60)))
