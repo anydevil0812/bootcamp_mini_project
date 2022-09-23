@@ -14,7 +14,7 @@ class MakeCloud():
         def wc(self, file):
                 engine = Okt()
                 all_nouns = engine.nouns(file)
-                value_to_remove = ['장관', '위원회', '정부', '국가', '대통령령', '사항', '계획','지방자치단체','행정기관']
+                value_to_remove = ['기금', '위원회', '정부', '국가', '사항', '계획', '지방자치단체', '것임', '국민', '중립']
                 nouns = [n for n in all_nouns if len(n) > 1 and n not in value_to_remove]
                 count = Counter(nouns)
 
@@ -23,9 +23,9 @@ class MakeCloud():
                 table.columns = ['단어', '빈도수']
                 table.index = table.index + 1
                 print(table.head(60))
-                print(table[table['단어'] == '이산화탄소'])
+                # print(table[table['단어'] == '이산화탄소'])
 
-                image = Image.open('6.png')
+                image = Image.open('co2.png')
                 mask = np.array(image)
                 # image_color = ImageColorGenerator(mask)
 
@@ -39,7 +39,7 @@ class MakeCloud():
 
                 plt.imshow(cloud)
                 plt.axis('off')
-                plt.savefig('1.jpg')
+                plt.savefig('WordCloud.jpg')
                 plt.show()
 
 
