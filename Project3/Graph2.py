@@ -41,7 +41,7 @@ for j in year:
 data = {"제안 연도":year, "의안수":propose_count}
 table = pd.DataFrame(data)
 
-pio.templates.default = "plotly_white"
+pio.templates.default = "plotly_black"
 graph = go.Scatter(x=table['제안 연도'], y=table['의안수'], line={'color':'red','width':2})
 
 layout = go.Layout(title='기후변화에 관한 대한민국 의안 건수', font={'family':'Malgun Gothic', 'size':20},
