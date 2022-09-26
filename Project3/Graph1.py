@@ -88,7 +88,7 @@ count_list = [num1,num2,num3]
 
 graph_data = {'처리결과':result, '제안 건수':count_list}
 final_table = pd.DataFrame(graph_data)
-pio.templates.default = "plotly_black"
+pio.templates.default = "plotly_white"
 graph = go.Bar(x=final_table['처리결과'], y=final_table['제안 건수'], marker={"color":"green"})
 
 layout = go.Layout(title='기후변화에 관한 대한민국 의안 처리결과',font={'family':'Malgun Gothic', 'size':20},
