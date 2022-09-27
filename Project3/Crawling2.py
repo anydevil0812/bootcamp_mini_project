@@ -1,108 +1,38 @@
-# 공공데이터 포털 국회 국회사무처_의안 정보 오픈 API 크롤링
+# 국내 기후변화 보고서 워드클라우드 및 단어 빈도수 TOP 10 그래프 생성 파일
+
+from PyPDF2 import PdfFileReader # PyPDF2 = PDF파일 텍스트 추출 패키지
 import re
-from bs4 import BeautifulSoup
-import requests
-import pandas as pd
+import Cloud
+from Cloud import MakeCloud
 import plotly.graph_objects as go
 import plotly.io as pio
-import matplotlib.pyplot as plt
-import matplotlib
 
-url = 'http://apis.data.go.kr/9710000/BillInfoService2/getBillInfoList'
-params1 ={'ServiceKey' : 'Ws7z6yKz623hbrHshOvor+6YEclNv4A2kyaiwVd97XGoZpsn2TS41ZzgqzThFlqYnOaIYoPDsErGGbjc1/QIog==',
-         'numOfRows' : '50', 'pageNo' : '1',
-         'ord' : 'A01', 'start_ord' : '18', 'end_ord' : '20', 'bill_name' : '기후'}
+# 보고서 PDF파일로부터 텍스트 추출
+pdf = PdfFileReader(open('2020.pdf','rb'))
+with open('보고서 내용.txt','wb') as file:
+    for i in range(5,111):
+        pdf_text = re.sub('([,.!•→?○*＊·・↓？\"\'])', '', str(pdf.pages[i].extractText().split('\n')))
+        pdf_text = pdf_text.replace('u3000', '')
+        pdf_text = pdf_text.replace('u3000500', '')
+        file.write(pdf_text.encode('utf-8'))
+    with open('보고서 내용.txt', 'r', encoding='utf-8') as f:
+        text = f.read()
 
-params2 ={'ServiceKey' : 'Ws7z6yKz623hbrHshOvor+6YEclNv4A2kyaiwVd97XGoZpsn2TS41ZzgqzThFlqYnOaIYoPDsErGGbjc1/QIog==',
-         'numOfRows' : '50', 'pageNo' : '1',
-         'ord' : 'A01', 'start_ord' : '21', 'end_ord' : '21', 'bill_name' : '기후'}
+# 워드 클라우드 생성
+Cloud1 = MakeCloud()
+Cloud1.wc2(text)
 
-comp1 = 'generalResult'
-comp2 = 'procStageCd'
+f.close()
+file.close()
 
-# 데이터프레임 생성
-def make_table(params, comp):
+# 단어 빈도수 TOP 10 그래프 생성
+table = Cloud.table
+table = table.loc[1:15,:]
+pio.templates.default = "plotly_white"
+graph = go.Bar(x=table['단어'], y=table['빈도수'], marker={"color":"navy"})
 
-    # OPEN API를 이용하여 데이터 추출
-    response = requests.get(url, params=params) # UTF-8 코드 형식로 데이터가 불러와짐
-    soup = BeautifulSoup(response.content.decode('utf-8'), 'xml') # 한글로 보기 편하게 디코딩
-
-    bill_name = soup.select('billName')
-    general_result = soup.select(comp) # generalResult 태그 안에 있는 내용만 추출
-
-    # 불필요한 텍스트 제거
-    bill_name = str(bill_name) # 정규식을 적용하기 위하여 bs4.element.ResultSet -> str로 변환
-    general_result = str(general_result)
-
-    rule1 = re.compile('(?<=\<billName>)(.*?)(?=<\/billName>)') # rule1에 정규식 표현식 컴파일
-    p_bill_name = rule1.findall(bill_name)
-
-    rule2 = re.compile('(?<=\<generalResult>)(.*?)(?=<\/generalResult>)') # rule2에 정규식 표현식 컴파일
-    rule3 = re.compile('(?<=\<procStageCd>)(.*?)(?=<\/procStageCd>)')  # rule2에 정규식 표현식 컴파일
-
-    if comp == comp1:
-        p_result = rule2.findall(general_result)
-        for i in p_bill_name:
-            if i.find('추천') != -1 or i.find('추천의건') != -1:
-                p_bill_name.remove(i)
-        data = {"의안명": p_bill_name, "의결결과": p_result}
-        global table1
-        table1 = pd.DataFrame(data)
-
-    elif comp == comp2:
-        p_result = rule3.findall(general_result)
-        for i in p_bill_name:
-            if i.find('추천') != -1 or i.find('추천의건') != -1:
-                index = p_bill_name.index(i)
-                p_bill_name.remove(i)
-                p_result.pop(index)
-        data = {"의안명": p_bill_name, "의결결과": p_result}
-        global table2
-        table2 = pd.DataFrame(data)
-
-make_table(params1, comp1)
-make_table(params2, comp2)
-
-table = pd.concat([table1,table2])
-table.reset_index(drop=True, inplace=True)
-
-table.loc[table['의결결과'] =='원안가결', '의결결과'] = "가결"
-table.loc[table['의결결과'] =='본회의의결', '의결결과'] = "가결"
-table.loc[table['의결결과'] =='공포', '의결결과'] = "가결"
-
-table.loc[table['의결결과'] =='임기만료폐기', '의결결과'] = "폐기"
-table.loc[table['의결결과'] =='대안반영폐기', '의결결과'] = "폐기"
-table.loc[table['의결결과'] =='철회', '의결결과'] = "폐기"
-
-table.loc[table['의결결과'] =='소관위접수', '의결결과'] = "접수 및 심사"
-table.loc[table['의결결과'] =='소관위심사', '의결결과'] = "접수 및 심사"
-
-# 기후변화에 관한 대한민국 의안 처리결과 그래프
-
-result = table['의결결과'].unique()
-
-num1 = len(table.loc[table['의결결과'] =='가결'])
-num2 = len(table.loc[table['의결결과'] =='폐기'])
-num3 = len(table.loc[table['의결결과'] =='접수 및 심사'])
-count_list = [num1,num2,num3]
-
-graph_data = {'처리결과':result, '제안 건수':count_list}
-final_table = pd.DataFrame(graph_data)
-pio.templates.default = "plotly_dark"
-graph = go.Bar(x=final_table['처리결과'], y=final_table['제안 건수'])
-
-layout = go.Layout(title='기후변화에 관한 대한민국 의안 처리결과',
-                   xaxis={'title':'처리결과'},yaxis={'title':'제안 건수'},width=600,height=700)
+layout = go.Layout(title='국내 기후변화 보고서 단어 빈도수 TOP 15',font={'family':'Malgun Gothic', 'size':18},
+                   xaxis={'title':'단어'},yaxis={'title':'빈도수'},width=600,height=700)
 fig = go.Figure(data=graph, layout=layout)
 fig.show()
-
-matplotlib.rcParams['font.family'] ='Malgun Gothic'
-matplotlib.rcParams['axes.unicode_minus'] = False
-
-graph2 = plt.pie(final_table['제안 건수'], explode=(0.05,0.05,0.05), autopct='%1.2f%%', labels=final_table['처리결과'],
-                startangle = 90, textprops = {'fontsize': 14})
-
-plt.title('기후변화에 관한 대한민국 의안 처리결과 비율')
-plt.show()
-
 
