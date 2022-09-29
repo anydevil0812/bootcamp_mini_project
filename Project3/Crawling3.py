@@ -1,5 +1,4 @@
 # 국내 기후변화 법령 워드클라우드 및 단어 빈도수 TOP 10 그래프 생성 파일
-
 import glob
 import os
 import Cloud
@@ -36,7 +35,6 @@ table = Cloud.table
 table = table.loc[1:15,:]
 pio.templates.default = "plotly_white"
 graph = go.Bar(x=table['단어'], y=table['빈도수'], marker={"color":"brown"})
-
 layout = go.Layout(title='국내 기후변화 법령 단어 빈도수 TOP 15',font={'family':'Malgun Gothic', 'size':18},
                    xaxis={'title':'단어'},yaxis={'title':'빈도수'},width=600,height=700)
 fig = go.Figure(data=graph, layout=layout)

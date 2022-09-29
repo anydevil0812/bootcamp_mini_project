@@ -1,5 +1,4 @@
 # 국내 기후변화 의안 처리결과 현황 막대&원그래프 생성 파일
-
 import re
 from bs4 import BeautifulSoup
 import requests
@@ -72,7 +71,7 @@ make_table(params2, comp2)
 # 데이터프레임 의결결과 컬럼 데이터 전처리
 table = pd.concat([table1,table2])
 table.reset_index(drop=True, inplace=True)
-print(table)
+
 table.loc[table['의결결과'] =='원안가결', '의결결과'] = "가결"
 table.loc[table['의결결과'] =='본회의의결', '의결결과'] = "가결"
 table.loc[table['의결결과'] =='공포', '의결결과'] = "가결"
@@ -86,19 +85,16 @@ table.loc[table['의결결과'] =='소관위심사', '의결결과'] = "접수 �
 
 # 국내 기후변화 의안 처리결과 현황 막대&원 그래프 생성
 result = table['의결결과'].unique()
-
 num1 = len(table.loc[table['의결결과'] =='가결'])
 num2 = len(table.loc[table['의결결과'] =='폐기'])
 num3 = len(table.loc[table['의결결과'] =='접수 및 심사'])
 count_list = [num1,num2,num3]
-
 graph_data = {'처리결과':result, '제안 건수':count_list}
 final_table = pd.DataFrame(graph_data)
 
 # plotly를 이용하여 막대 그래프 생성
 pio.templates.default = "plotly_white"
 graph1 = go.Bar(x=final_table['처리결과'], y=final_table['제안 건수'], marker={"color":["red","green","orange"]})
-
 layout = go.Layout(title='기후변화에 관한 대한민국 의안 처리결과 현황',font={'family':'Malgun Gothic', 'size':18},
                    xaxis={'title':'처리결과'},yaxis={'title':'제안 건수'},width=600,height=700)
 fig = go.Figure(data=graph1, layout=layout)
@@ -107,10 +103,8 @@ fig.show()
 # matplotlib을 이용하여 원 그래프 생성
 matplotlib.rcParams['font.family'] ='Malgun Gothic'
 matplotlib.rcParams['axes.unicode_minus'] = False
-
 graph2 = plt.pie(final_table['제안 건수'], explode=(0.05,0.05,0.05), autopct='%1.2f%%', labels=final_table['처리결과'],
                 startangle = 90, textprops = {'fontsize': 12}, colors=["red","green","orange"])
-
 plt.title('기후변화에 관한 대한민국 의안 처리결과 현황 비율', fontsize=18)
 plt.show()
 

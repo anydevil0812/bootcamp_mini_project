@@ -1,5 +1,4 @@
 # 국내 코로나 대응책 의안수 선 그래프 생성 파일
-
 import re
 from bs4 import BeautifulSoup
 import requests
@@ -60,7 +59,6 @@ def make_graph(count, keyword, range, color):
     # 국내 기후변화 의안수 선 그래프 생성
     pio.templates.default = "plotly_white"
     graph = go.Scatter(x=table['제안 연도'], y=table['의안수'], line={'color': color, 'width': 2})
-
     layout = go.Layout(title=keyword+'에 관한 대한민국 의안 건수', font={'family': 'Malgun Gothic', 'size': 20},
                        xaxis={'title': '제안 연도'}, yaxis={'title': '의안수'}, width=600, height=700)
     fig = go.Figure(data=graph, layout=layout)

@@ -39,4 +39,3 @@ class MakeCloud():
         plt.axis('off')
         plt.savefig(name)
         plt.show()
-

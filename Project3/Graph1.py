@@ -1,5 +1,4 @@
 # 국내 기후변화 의안수 선 그래프 생성 파일
-
 import re
 from bs4 import BeautifulSoup
 import requests
@@ -21,7 +20,7 @@ propose_date = str(propose_date) # 정규식을 적용하기 위하여 bs4.eleme
 rule1 = re.compile('(?<=\<proposeDt>)(.*?)(?=<\/proposeDt>)') # rule에 정규식 표현식 컴파일
 date = rule1.findall(propose_date)
 
-# 국내 기후변화 의안수 데이터프레임 생성
+# 국내 기후변화 의안수 데이터프레임 생성을 위한 제안 연도와 의안수 리스트 생성
 propose_year = []
 for i in date:
     j = i.split('-')[0]
@@ -38,13 +37,13 @@ for j in year:
     else:
         propose_count.append(propose_year.count(j))
 
+# 국내 기후변화 의안수 데이터프레임 생성
 data = {"제안 연도":year, "의안수":propose_count}
 table = pd.DataFrame(data)
 
 # 국내 기후변화 의안수 선 그래프 생성
 pio.templates.default = "plotly_white"
 graph = go.Scatter(x=table['제안 연도'], y=table['의안수'], line={'color':'red','width':2})
-
 layout = go.Layout(title='기후변화에 관한 대한민국 의안 건수', font={'family':'Malgun Gothic', 'size':20},
                    xaxis={'title':'제안 연도'},yaxis={'title':'의안수'},width=600,height=700)
 fig = go.Figure(data=graph, layout=layout)
