@@ -1,4 +1,4 @@
-# 국내 기후변화 법령 워드클라우드 및 단어 빈도수 TOP 10 그래프 생성 파일
+# 국내 기후변화 법령 워드클라우드 및 단어 빈도수 TOP 15 그래프 생성 파일
 import glob
 import os
 import Cloud
