@@ -11,6 +11,7 @@ import matplotlib
 # 공공데이터 포털 국회사무처_의안 정보 오픈 API를 이용하여 크롤링
 # 현재 국회의원인 21대 국회의원들이 발의한 의안은 심사진행상태 항목('procStageCd')을 이용하고
 # 과거의 18~20대 국회의원들이 발의한한 의안은 의결결과 항목('generalResult')을 이용
+
 url = 'http://apis.data.go.kr/9710000/BillInfoService2/getBillInfoList'
 params1 ={'ServiceKey' : 'Ws7z6yKz623hbrHshOvor+6YEclNv4A2kyaiwVd97XGoZpsn2TS41ZzgqzThFlqYnOaIYoPDsErGGbjc1/QIog==',
          'numOfRows' : '50', 'pageNo' : '1',
