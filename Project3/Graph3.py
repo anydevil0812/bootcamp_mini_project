@@ -1,4 +1,4 @@
-# 국내 코로나 대응책 의안수 선 그래프 생성 파일
+# 2020~2022 국내 기후변화&코로나 대응책 의안수 선 그래프 생성 파일
 import re
 from bs4 import BeautifulSoup
 import requests
