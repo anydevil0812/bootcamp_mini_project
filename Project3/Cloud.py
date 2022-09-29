@@ -1,3 +1,4 @@
+# 워드클라우드 생성 파일
 import matplotlib.pyplot as plt
 import numpy as np
 from pandas import DataFrame
