@@ -20,7 +20,7 @@ propose_date = str(propose_date) # 정규식을 적용하기 위하여 bs4.eleme
 rule1 = re.compile('(?<=\<proposeDt>)(.*?)(?=<\/proposeDt>)') # rule에 정규식 표현식 컴파일
 date = rule1.findall(propose_date)
 
-# 국내 기후변화 의안수 데이터프레임 생성을 위한 제안 연도와 의안수 리스트 생성
+# 국내 기후변화 의안수 데이터프레임 생성을 위한 제안연도와 의안수 리스트 생성
 propose_year = []
 for i in date:
     j = i.split('-')[0]
