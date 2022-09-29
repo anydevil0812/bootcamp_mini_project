@@ -1,4 +1,4 @@
-# 국내 기후변화 보고서 워드클라우드 및 단어 빈도수 TOP 10 그래프 생성 파일
+# 국내 기후변화 보고서 워드클라우드 및 단어 빈도수 TOP 15 그래프 생성 파일
 from PyPDF2 import PdfFileReader # PyPDF2 = PDF파일 텍스트 추출 패키지
 import re
 import Cloud
