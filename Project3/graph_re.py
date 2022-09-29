@@ -8,6 +8,7 @@ import plotly.graph_objects as go
 import plotly.io as pio
 
 # 공공데이터 포털 국회사무처_의안 정보 오픈 API를 이용하여 크롤링
+def extract_num(keyword)
 url = 'http://apis.data.go.kr/9710000/BillInfoService2/getBillInfoList'
 params ={'ServiceKey' : 'Ws7z6yKz623hbrHshOvor+6YEclNv4A2kyaiwVd97XGoZpsn2TS41ZzgqzThFlqYnOaIYoPDsErGGbjc1/QIog==',
          'numOfRows' : '100', 'pageNo' : '1',
@@ -40,6 +41,7 @@ for j in year:
 
 data = {"제안 연도":year, "의안수":propose_count}
 table = pd.DataFrame(data)
+table = table.iloc[12:15,:]
 
 # 국내 기후변화 의안수 선 그래프 생성
 pio.templates.default = "plotly_white"

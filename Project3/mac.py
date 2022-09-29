@@ -40,6 +40,7 @@ for j in year:
 
 data = {"제안 연도":year, "의안수":propose_count}
 table = pd.DataFrame(data)
+table = table.iloc[12:15,:]
 
 # 국내 기후변화 의안수 선 그래프 생성
 pio.templates.default = "plotly_white"

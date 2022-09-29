@@ -19,13 +19,13 @@ with open('보고서 내용.txt','wb') as file:
         text = f.read()
 
 # 워드 클라우드 생성
-Cloud1 = MakeCloud()
-Cloud1.wc2(text)
+Cloud2 = MakeCloud()
+Cloud2.wc(text,220,240,'WordCloud2.jpg')
 
 f.close()
 file.close()
 
-# 단어 빈도수 TOP 10 그래프 생성
+# 단어 빈도수 TOP 15 그래프 생성
 table = Cloud.table
 table = table.loc[1:15,:]
 pio.templates.default = "plotly_white"
