@@ -95,7 +95,7 @@ final_table = pd.DataFrame(graph_data)
 
 # plotly를 이용하여 막대 그래프 생성
 pio.templates.default = "plotly_white"
-graph1 = go.Bar(x=final_table['처리결과'], y=final_table['제안 건수'], marker={"color":["red","green","orange"]})
+graph1 = go.Bar(x=final_table['처리결과'], y=final_table['제안 건수'], marker={"color":["red","aqua","orange"]})
 layout = go.Layout(title='기후변화에 관한 대한민국 의안 처리결과 현황',font={'family':'Malgun Gothic', 'size':18},
                    xaxis={'title':'처리결과'},yaxis={'title':'제안 건수'},width=600,height=700)
 fig = go.Figure(data=graph1, layout=layout)
@@ -105,7 +105,7 @@ fig.show()
 matplotlib.rcParams['font.family'] ='Malgun Gothic'
 matplotlib.rcParams['axes.unicode_minus'] = False
 graph2 = plt.pie(final_table['제안 건수'], explode=(0.05,0.05,0.05), autopct='%1.2f%%', labels=final_table['처리결과'],
-                startangle = 90, textprops = {'fontsize': 12}, colors=["red","green","orange"])
+                startangle = 90, textprops = {'fontsize': 12}, colors=["red","aqua","orange"])
 plt.title('기후변화에 관한 대한민국 의안 처리결과 현황 비율', fontsize=18)
 plt.show()
 
