@@ -32,4 +32,3 @@ layout = go.Layout(title='국내 기후변화 보고서 단어 빈도수 TOP 15'
                    xaxis={'title':'단어'},yaxis={'title':'빈도수'},width=600,height=700)
 fig = go.Figure(data=graph, layout=layout)
 fig.show()
-
