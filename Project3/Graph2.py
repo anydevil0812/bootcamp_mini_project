@@ -42,7 +42,7 @@ def make_table(params, comp):
     p_bill_name = rule1.findall(bill_name)
 
     rule2 = re.compile('(?<=\<generalResult>)(.*?)(?=<\/generalResult>)') # rule2에 정규식 표현식 컴파일 - generalResult 태그 안에 있는 내용 모두 추출
-    rule3 = re.compile('(?<=\<procStageCd>)(.*?)(?=<\/procStageCd>)')  # rule2에 정규식 표현식 컴파일 - procStageCd 태그 안에 있는 내용 모두 추출
+    rule3 = re.compile('(?<=\<procStageCd>)(.*?)(?=<\/procStageCd>)')  # rule3에 정규식 표현식 컴파일 - procStageCd 태그 안에 있는 내용 모두 추출
 
     # 과거 18~20대에 발의된 추천안은 아예 결과가 없는 상태로 조회가 되어 해당 의안의 상태가 bill_result에 없어 bill_name에서만 삭제하면됨
     if comp == comp1:
@@ -108,5 +108,3 @@ graph2 = plt.pie(final_table['제안 건수'], explode=(0.05,0.05,0.05), autopct
                 startangle = 90, textprops = {'fontsize': 12}, colors=["red","aqua","orange"])
 plt.title('기후변화에 관한 대한민국 의안 처리결과 현황 비율', fontsize=18)
 plt.show()
-
-
