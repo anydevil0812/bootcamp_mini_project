@@ -14,7 +14,7 @@ class MakeCloud():
         engine = Okt()
         all_nouns = engine.nouns(data)
         value_to_remove = ['기금', '위원회', '정부', '국가', '사항', '계획', '지방자치단체', '것임',
-                           '국민', '중립', '장관', '경우', '대통령령', '녹색'] # 워드클라우드 생성시 제거할 단어 목록
+                           '국민', '중립', '장관', '경우', '대통령령', '녹색', '대한'] # 워드클라우드 생성시 제거할 단어 목록
         nouns = [n for n in all_nouns if len(n) > 1 and n not in value_to_remove]
         count = Counter(nouns)
 
