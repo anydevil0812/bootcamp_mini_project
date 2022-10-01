@@ -18,7 +18,7 @@ params1 ={'ServiceKey' : 'Ws7z6yKz623hbrHshOvor+6YEclNv4A2kyaiwVd97XGoZpsn2TS41Z
          'ord' : 'A01', 'start_ord' : '18', 'end_ord' : '20', 'bill_name' : '기후'}
 
 params2 ={'ServiceKey' : 'Ws7z6yKz623hbrHshOvor+6YEclNv4A2kyaiwVd97XGoZpsn2TS41ZzgqzThFlqYnOaIYoPDsErGGbjc1/QIog==',
-         'numOfRows' : '50', 'pageNo' : '1',
+         'numOfRows' : '50', 'pageNo' : '1', 'end_propose_date':'2022-09-19',
          'ord' : 'A01', 'start_ord' : '21', 'end_ord' : '21', 'bill_name' : '기후'}
 
 comp1 = 'generalResult'
