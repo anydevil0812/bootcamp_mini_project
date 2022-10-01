@@ -9,7 +9,7 @@ import plotly.io as pio
 # 공공데이터 포털 국회사무처_의안 정보 오픈 API를 이용하여 크롤링
 url = 'http://apis.data.go.kr/9710000/BillInfoService2/getBillInfoList'
 params ={'ServiceKey' : 'Ws7z6yKz623hbrHshOvor+6YEclNv4A2kyaiwVd97XGoZpsn2TS41ZzgqzThFlqYnOaIYoPDsErGGbjc1/QIog==',
-         'numOfRows' : '100', 'pageNo' : '1',
+         'numOfRows' : '100', 'pageNo' : '1', 'end_propose_date':'2022-09-19',
          'ord' : 'A01', 'start_ord' : '18', 'end_ord' : '21', 'bill_name' : '기후'}
 response = requests.get(url, params=params) # UTF-8 코드 형식로 데이터가 불러와짐
 soup = BeautifulSoup(response.content.decode('utf-8'), 'xml') # 한글로 보기 편하게 디코딩
