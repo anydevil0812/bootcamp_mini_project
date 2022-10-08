@@ -6,8 +6,6 @@ import pandas as pd
 import plotly.graph_objects as go
 import plotly.io as pio
 from datetime import date, timedelta
-import matplotlib.pyplot as plt
-import matplotlib
 
 # 5일간의 날짜 목록
 date_list = []
@@ -110,9 +108,10 @@ print(final_table1)
 # 국내 박스오피스 Top 5 선 그래프 생성
 pio.templates.default = "plotly_dark"
 graph = go.Scatter(x=final_table1['기준 날짜'], y=final_table1['일일 관객수'], line={'color':'red','width':2})
-layout = go.Layout(title='국내 박스오피스 1위 영화 관객수 추이', font={'family':'Malgun Gothic', 'size':20},
-                   xaxis={'title':'날짜'},yaxis={'title':'관객수'},width=1000,height=700)
+layout = go.Layout(title='국내 박스오피스 1위 영화 관객수 추이',font={'family':'Malgun Gothic', 'size':20},
+                   xaxis={'title':'날짜'},yaxis={'title':'관객수'},width=1200,height=700)
 fig = go.Figure(data=graph, layout=layout)
-fig.update_xaxes(tickformat='%Y %m %d')
-fig.update_yaxes(tickformat=',')
+fig.update_layout(title_x=0.5) # 제목 가운데 정렬
+fig.update_xaxes(dtick="D1", tickformat='%Y %m %d') # 날짜 Oct처럼 영어 안나오고 숫자로만 나오게 + 간격은 일간격으로
+fig.update_yaxes(tickformat=',') # Y축 데이터 k없이 ,으로 간단하게 표시
 fig.show()
