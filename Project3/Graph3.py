@@ -11,7 +11,7 @@ def count_list(keyword, page_num):
 
     url = 'http://apis.data.go.kr/9710000/BillInfoService2/getBillInfoList'
     params ={'ServiceKey' : 'Ws7z6yKz623hbrHshOvor+6YEclNv4A2kyaiwVd97XGoZpsn2TS41ZzgqzThFlqYnOaIYoPDsErGGbjc1/QIog==',
-             'numOfRows' : '100', 'pageNo' : page_num, 'ord' : 'A01',
+             'numOfRows' : '100', 'pageNo' : page_num, 'end_propose_date':'2022-09-19', 'ord' : 'A01',
              'start_ord' : '21', 'end_ord' : '21', 'bill_name' : keyword}
     response = requests.get(url, params=params) # UTF-8 코드 형식로 데이터가 불러와짐
     soup = BeautifulSoup(response.content.decode('utf-8'), 'xml') # 한글로 보기 편하게 디코딩
