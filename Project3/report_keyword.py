@@ -7,7 +7,7 @@ import plotly.graph_objects as go
 import plotly.io as pio
 
 # 보고서 PDF파일로부터 텍스트 추출
-pdf = PdfFileReader(open('2020.pdf','rb'))
+pdf = PdfFileReader(open('report.pdf','rb'))
 with open('보고서 내용.txt','wb') as file:
     for i in range(5,111):
         pdf_text = re.sub('([,.!•→?○*＊·・↓？\"\'])', '', str(pdf.pages[i].extractText().split('\n')))
