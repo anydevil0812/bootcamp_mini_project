@@ -1,6 +1,5 @@
 # Java - MySQL 연동 개인 미니 프로젝트
 
-![1](https://user-images.githubusercontent.com/109947297/197326000-3127ae12-d8a9-4533-bc2e-eb23e408ccf1.PNG)
 ### [진행 기간]
 
 - 2022.10.21 (하루)
@@ -19,3 +18,5 @@
 2. **Eclipse로 CRUD 구현**할 때에는 **SELECT**로는 **ResultSet**을 이용하여 데이터를 출력하였고 **INSERT**에서는 **입력값**을 이용하여 명령이 정상적으로 실행되면 마지막에 입력한 데이터를 출력하도록 코드를 구성했는데<br>
 **UPDATE와 DELETE**에서는 왜 SELECT처럼 **ResultSet**을 이용하여 정상적으로 명령이 실행되어도 마지막에 해당 **데이터가 출력되지 않았**나 여러 시도를 해보니 데이터를 **ResultSet 객체로 반환하는 것은 SELECT 만의 특징**이었고<br>
  결국 UPDATE와 DELETE는 완료 후 어떤 데이터가 삭제되었나 출력해주지 않고 **결과가 잘 진행되었나 출력**해주는 정도로 마무리하였습니다.
+---
+![1](https://user-images.githubusercontent.com/109947297/197326000-3127ae12-d8a9-4533-bc2e-eb23e408ccf1.PNG)
