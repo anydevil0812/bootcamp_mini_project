@@ -1,6 +1,7 @@
 # Java - MySQL 연동 개인 미니 프로젝트
 
-![1](https://user-images.githubusercontent.com/109947297/197326000-3127ae12-d8a9-4533-bc2e-eb23e408ccf1.PNG)
+<p align="center"><img src="https://user-images.githubusercontent.com/109947297/197326000-3127ae12-d8a9-4533-bc2e-eb23e408ccf1.PNG" width="600"></p>
+
 
 ### [진행 기간]
 
